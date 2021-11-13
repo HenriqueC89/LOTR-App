@@ -1,0 +1,65 @@
+import createAsyncSlice from './helper/createAsyncSlice';
+import { combineReducers } from '@reduxjs/toolkit';
+
+const character = createAsyncSlice({
+  name: 'character',
+  initialState: {
+    data: [],
+  },
+  reducers: {},
+  fetchConfig: (name) => ({
+    url: `https://the-one-api.dev/v2/character?name=/${name}/i`,
+    options: {
+      method: 'GET',
+      cache: 'no-store',
+      headers: { Authorization: 'Bearer 7X5w1wW_HHaQsjNdvVp0' },
+    },
+  }),
+});
+
+const characters = createAsyncSlice({
+  name: 'characters',
+  initialState: {
+    data: [],
+  },
+  reducers: {},
+  fetchConfig: (page, limit = 10) => ({
+    url: `https://the-one-api.dev/v2/character?page=${page}&limit=${limit}`,
+    options: {
+      method: 'GET',
+      cache: 'no-store',
+      headers: { Authorization: 'Bearer 7X5w1wW_HHaQsjNdvVp0' },
+    },
+  }),
+});
+
+const CharactersReducers = combineReducers({
+  character: character.reducer,
+  characters: characters.reducer,
+});
+
+// export const { addCharacters } = characters.actions;
+export const fetchCharacter = character.asyncAction;
+export const fetchCharacters = characters.asyncAction;
+
+export const searchCharacter =
+  ({ search }) =>
+  async (dispatch) => {
+    try {
+      console.log(search);
+      await dispatch(fetchCharacter(search));
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+export const loadCharacters = (page) => async (dispatch) => {
+  try {
+    console.log(page);
+    await dispatch(fetchCharacters(page));
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export default CharactersReducers;
