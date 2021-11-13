@@ -16,7 +16,7 @@ const CharactersResult = () => {
   if (!data) return <div>Loading</div>;
   if (data)
     return (
-      <ul>
+      <ul className={styles.listContainer}>
         {data.docs?.map((character) => (
           <li className={styles.list} key={character._id}>
             <div className={styles.infos}>
