@@ -35,7 +35,7 @@ function App() {
           />
           <button>Busca</button>
         </form>
-        {/* <Loading /> */}
+        <Loading />
         <CharactersResult />
         {/* <CharactersResult /> */}
       </div>

@@ -29,8 +29,8 @@ const Loading = () => {
       <div className={styles.loading}>
         <svg
           className={styles.tree}
-          width='2500'
-          height='2500'
+          width='100%'
+          height='100%'
           viewBox='0 0 192.756 192.756'
           fill='none'
           xmlns='http://www.w3.org/2000/svg'
