@@ -37,10 +37,10 @@ const createAsyncSlice = (config) => {
 
   const { fetchStarted, fetchSuccess, fetchError } = slice.actions;
 
-  const asyncAction = (payload) => async (dispatch) => {
+  const asyncAction = (...payload) => async (dispatch) => {
     try {
       dispatch(fetchStarted());
-      const { url, options } = config.fetchConfig(payload);
+      const { url, options } = config.fetchConfig(...payload);
       const response = await fetch(url, options);
       const data = await response.json();
       return dispatch(fetchSuccess(data));
