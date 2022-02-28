@@ -7,7 +7,6 @@ const CharactersResult = () => {
   const { loading, error, data } = useSelector(
     (state) => state.CharactersReducers.characters
   );
-  console.log(data);
   const dispatch = useDispatch();
 
   React.useEffect(() => {
@@ -21,13 +20,13 @@ const CharactersResult = () => {
           <li className={styles.list} key={character._id}>
             <div className={styles.infos}>
               <p className={styles.name}>
-                Nome: <span>{character.name}</span>
+                Name: <span>{character.name}</span>
               </p>
               <p className={styles.race}>
-                Raça: <span>{character.race || '-'}</span>
+                Race: <span>{character.race || '-'}</span>
               </p>
               <p className={styles.birth}>
-                Nascimento: <span>{character.birth || '-'}</span>
+                Date of Birth: <span>{character.birth || '-'}</span>
               </p>
               <a
                 className={styles.Link}

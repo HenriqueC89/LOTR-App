@@ -1,5 +1,6 @@
 import createAsyncSlice from './helper/createAsyncSlice';
 import { combineReducers } from '@reduxjs/toolkit';
+const API_KEY = process.env.REACT_APP_API_KEY;
 
 const character = createAsyncSlice({
   name: 'character',
@@ -12,7 +13,7 @@ const character = createAsyncSlice({
     options: {
       method: 'GET',
       cache: 'no-store',
-      headers: { Authorization: 'Bearer 7X5w1wW_HHaQsjNdvVp0' },
+      headers: { Authorization: `Bearer ${API_KEY}` },
     },
   }),
 });
@@ -28,7 +29,7 @@ const characters = createAsyncSlice({
     options: {
       method: 'GET',
       cache: 'no-store',
-      headers: { Authorization: 'Bearer 7X5w1wW_HHaQsjNdvVp0' },
+      headers: { Authorization: `Bearer ${API_KEY}` },
     },
   }),
 });
