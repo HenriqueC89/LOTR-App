@@ -1,6 +1,6 @@
 
 import { useDispatch } from 'react-redux';
-import { searchCharacter } from '../../store/characters';
+import { searchCharacter, loadCharacters } from '../../store/characters';
 import React from 'react';
 
 function Search() {
@@ -12,18 +12,22 @@ function Search() {
     dispatch(searchCharacter({ search }));
   }
 
+  React.useEffect(() => {
+    if (!search) dispatch(loadCharacters(1));
+  }, [dispatch, search]);
+
   return (
     <div className='search_container'>
-        <form action='' onSubmit={handleSubmit}>
-          <label htmlFor='inpt-charactersSearch'>Search characters</label>
-          <input
-            id='inpt-charactersSearch'
-            type='search'
-            value={search}
-            onChange={({ target }) => setSearch(target.value)}
-          />
-          <button>Search</button>
-        </form>
+      <form action='' onSubmit={handleSubmit}>
+        <label htmlFor='inpt-charactersSearch'>Search characters</label>
+        <input
+          id='inpt-charactersSearch'
+          type='search'
+          value={search}
+          onChange={({ target }) => setSearch(target.value)}
+        />
+        <button>Search</button>
+      </form>
     </div>
   );
 }
